@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lazy-loading-Test</title>
+</head>
+<body>
+<div class="img-box"></div>
+<p>Yoba Yoba</p>
+<script>
+    function getCreate() {
+        let i = 1;
+        while (i < 30) {
+            const element = document.createElement("img");
+            if (i < 10) {
+                const name = `3dwall0${i}.jpg`;
+                element.setAttribute('data-src', `src/img/${name}`);
+            } else {
+                const name = `3dwall${i}.jpg`;
+                element.setAttribute('data-src', `src/img/${name}`);
+            }
+
+            document.querySelector('.img-box').appendChild(element);
+            i++;
+        }
+    }
+    getCreate();
+    [].forEach.call(document.querySelectorAll('img[data-src]'), function(img) {
+        img.setAttribute('src', img.getAttribute('data-src'));
+        img.onload = function() {
+            img.removeAttribute('data-src');
+        };
+    });
+        [].forEach.call(document.querySelectorAll('img[data-src]'),    function(img) {
+        img.setAttribute('src', img.getAttribute('data-src'));
+        img.onload = function() {
+            img.removeAttribute('data-src');
+        };
+    });
+</script>
+</body>
+</html>
