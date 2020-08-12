@@ -8,6 +8,12 @@
     <title>Lazy-loading-Test</title>
 </head>
 <body>
+<style>
+    .img-box img {
+        width: 800px;
+
+    }
+</style>
 <div class="img-box"></div>
 <p>Yoba Yoba</p>
 <script>
@@ -28,18 +34,25 @@
         }
     }
     getCreate();
-    [].forEach.call(document.querySelectorAll('img[data-src]'), function(img) {
-        img.setAttribute('src', img.getAttribute('data-src'));
-        img.onload = function() {
-            img.removeAttribute('data-src');
-        };
-    });
+
+    async function f() {
+        [].forEach.call(document.querySelectorAll('img[data-src]'), function(img) {
+            img.setAttribute('src', img.getAttribute('data-src'));
+            img.onload = function() {
+                img.removeAttribute('data-src');
+            };
+        });
         [].forEach.call(document.querySelectorAll('img[data-src]'),    function(img) {
-        img.setAttribute('src', img.getAttribute('data-src'));
-        img.onload = function() {
-            img.removeAttribute('data-src');
-        };
-    });
+            img.setAttribute('src', img.getAttribute('data-src'));
+            img.onload = function() {
+                img.removeAttribute('data-src');
+            };
+        });
+    }
+
+    f();
+
+
 </script>
 </body>
 </html>
